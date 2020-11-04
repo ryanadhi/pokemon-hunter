@@ -38,14 +38,16 @@ export default function PokemonList() {
   const buttonActive = 'bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r';
   const buttonInActive = 'bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l opacity-50 cursor-not-allowed';
 
-  // TODO
-  // CREATE SKELETON
   return (
     <>
       <div className="container mx-auto">
-        {pokemons.status === 'loading' && <p>loading...</p>}
         <div className="flex-1 justify-center">
           <div className="flex flex-col bg-gray-200">
+            {
+              pokemons.status === 'loading' && [...Array(limit)].map(() => (
+                <div className="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2 capitalize">loading...</div>
+              ))
+            }
             {pokemons.status === 'loaded' && pokemons.data.results.map((pokemon) => (
               <div onClick={() => goToDetail(pokemon.name)} className="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2 capitalize">
                 {`${pokemon.name} ${countPokemonOwned(pokemon.name)}`}

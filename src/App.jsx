@@ -25,7 +25,7 @@ function App() {
   }, []);
   return (
     <>
-      <NavBar pokemonOwner={myPokemon.data.length} />
+      <NavBar pokemonOwned={myPokemon.data.length} />
       <Switch>
         <Route path="/pokemon/:name">
           <PokemonDetail />
