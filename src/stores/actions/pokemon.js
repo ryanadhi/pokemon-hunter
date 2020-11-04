@@ -73,3 +73,20 @@ export function getPokemonDetail(name) {
     });
   };
 }
+
+export function addPokemon(payload) {
+  return {
+    type: types.ADD_POKEMON,
+    payload,
+  };
+}
+
+export function releasePokemon(payload) {
+  return {
+    type: types.RELEASE_POKEMON,
+    payload,
+  };
+}
+
+// TODO
+// Release All

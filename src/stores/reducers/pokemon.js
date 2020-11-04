@@ -22,6 +22,33 @@ export function pokemon(state = {}, action) {
           ...action.payload,
         },
       };
+    case types.ADD_POKEMON: {
+      let id = 0;
+      const dataLength = state.myPokemon.data.length;
+      if (dataLength === 0) {
+        id = 1;
+      } else {
+        id = state.myPokemon.data[state.myPokemon.data.length - 1].id + 1;
+      }
+      return {
+        ...state,
+        myPokemon: {
+          data: state.myPokemon.data.concat({
+            id,
+            ...action.payload,
+          }),
+        },
+      };
+    }
+    case types.RELEASE_POKEMON:
+      return {
+        ...state,
+        myPokemon: {
+          data: state.myPokemon.data.filter((el) => el.id !== action.payload),
+        },
+      };
+      // TODO
+      // Release ALL
     default:
       return state;
   }
