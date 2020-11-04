@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
+import NavBar from './components/NavBar';
 import PokemonList from './pages/PokemonList';
 import MyPokemon from './pages/MyPokemon';
 import PokemonDetail from './pages/PokemonDetail';
@@ -24,36 +25,18 @@ function App() {
   }, []);
   return (
     <>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Pokemon List</Link>
-            </li>
-            <li>
-              <Link to="/my-pokemon">
-                {
-                `My Pokemon (${myPokemon.data.length})`
-              }
-              </Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/pokemon/:name">
-            <PokemonDetail />
-          </Route>
-          <Route path="/my-pokemon">
-            <MyPokemon />
-          </Route>
-          <Route path="/">
-            <PokemonList />
-          </Route>
-        </Switch>
-      </div>
+      <NavBar pokemonOwner={myPokemon.data.length} />
+      <Switch>
+        <Route path="/pokemon/:name">
+          <PokemonDetail />
+        </Route>
+        <Route path="/my-pokemon">
+          <MyPokemon />
+        </Route>
+        <Route path="/">
+          <PokemonList />
+        </Route>
+      </Switch>
     </>
   );
 }
