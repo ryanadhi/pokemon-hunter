@@ -19,6 +19,7 @@
     ],
     "rules": {
         "import/prefer-default-export": "off",
-        "linebreak-style": ["error", "windows"]
+        "linebreak-style": ["error", "windows"],
+        "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
     }
 }

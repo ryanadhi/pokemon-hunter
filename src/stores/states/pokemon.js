@@ -4,6 +4,11 @@ const pokemon = {
     error: null,
     data: [],
   },
+  pokemon: {
+    status: 'initial',
+    error: null,
+    data: {},
+  },
 };
 
 export default pokemon;
