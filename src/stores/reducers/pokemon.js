@@ -52,14 +52,20 @@ export function pokemon(state = {}, action) {
         },
       };
     }
-    // TODO
-    // Release ALL
+    case types.RELEASE_ALL_POKEMON: {
+      localStorage.removeItem('myPokemon');
+      return {
+        ...state,
+        myPokemon: {
+          data: [],
+        },
+      };
+    }
     case types.GET_LOCAL_POKEMONS: {
       const myPokemon = localStorage.getItem('myPokemon');
-      if (JSON.parse(myPokemon).length === 0) {
-        return {
-          ...state,
-        };
+      if (JSON.parse(myPokemon) === null || JSON.parse(myPokemon).length === 0) {
+        const newState = { ...state };
+        return newState;
       }
       return {
         ...state,

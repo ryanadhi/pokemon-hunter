@@ -88,8 +88,12 @@ export function releasePokemon(payload) {
   };
 }
 
-// TODO
-// Release All
+export function releaseAllPokemon(payload) {
+  return {
+    type: types.RELEASE_ALL_POKEMON,
+    payload,
+  };
+}
 
 export function getLocalPokemons() {
   return {

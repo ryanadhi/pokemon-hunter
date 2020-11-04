@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { releasePokemon, getLocalPokemons } from '../stores/actions/pokemon';
+import { releasePokemon, releaseAllPokemon, getLocalPokemons } from '../stores/actions/pokemon';
 
 export default function MyPokemon() {
   const dispatch = useDispatch();
@@ -8,6 +8,11 @@ export default function MyPokemon() {
   const removePokemon = (id) => {
     dispatch(releasePokemon(id));
   };
+
+  const removeAllPokemons = () => {
+    dispatch(releaseAllPokemon());
+  };
+
   const { myPokemon } = useSelector(
     (state) => state.pokemon,
   );
@@ -24,7 +29,7 @@ export default function MyPokemon() {
             <button type="button" onClick={() => removePokemon(pokemon.id)}>release</button>
           </>
         ))}
-      <button type="button" disabled={myPokemon.data.length === 0}>release all</button>
+      <button type="button" disabled={myPokemon.data.length === 0} onClick={() => removeAllPokemons()}>release all</button>
     </div>
   );
 }
