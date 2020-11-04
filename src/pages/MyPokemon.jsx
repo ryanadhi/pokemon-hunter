@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { releasePokemon } from '../stores/actions/pokemon';
+import { releasePokemon, getLocalPokemons } from '../stores/actions/pokemon';
 
 export default function MyPokemon() {
   const dispatch = useDispatch();
@@ -8,11 +8,12 @@ export default function MyPokemon() {
   const removePokemon = (id) => {
     dispatch(releasePokemon(id));
   };
-  // TODO
-  // useEffect to get from localstorage?
   const { myPokemon } = useSelector(
     (state) => state.pokemon,
   );
+  useEffect(() => {
+    dispatch(getLocalPokemons());
+  }, [myPokemon]);
   return (
     <div>
       <h1>this is mypokemon</h1>

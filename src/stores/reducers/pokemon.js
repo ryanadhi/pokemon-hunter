@@ -30,25 +30,44 @@ export function pokemon(state = {}, action) {
       } else {
         id = state.myPokemon.data[state.myPokemon.data.length - 1].id + 1;
       }
+      const myPokemon = state.myPokemon.data.concat({
+        id,
+        ...action.payload,
+      });
+      localStorage.setItem('myPokemon', JSON.stringify(myPokemon));
       return {
         ...state,
         myPokemon: {
-          data: state.myPokemon.data.concat({
-            id,
-            ...action.payload,
-          }),
+          data: myPokemon,
         },
       };
     }
-    case types.RELEASE_POKEMON:
+    case types.RELEASE_POKEMON: {
+      const myPokemon = state.myPokemon.data.filter((el) => el.id !== action.payload);
+      localStorage.setItem('myPokemon', JSON.stringify(myPokemon));
       return {
         ...state,
         myPokemon: {
-          data: state.myPokemon.data.filter((el) => el.id !== action.payload),
+          data: myPokemon,
         },
       };
-      // TODO
-      // Release ALL
+    }
+    // TODO
+    // Release ALL
+    case types.GET_LOCAL_POKEMONS: {
+      const myPokemon = localStorage.getItem('myPokemon');
+      if (JSON.parse(myPokemon).length === 0) {
+        return {
+          ...state,
+        };
+      }
+      return {
+        ...state,
+        myPokemon: {
+          data: JSON.parse(myPokemon),
+        },
+      };
+    }
     default:
       return state;
   }

@@ -1,16 +1,27 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Switch,
   Route,
   Link,
 } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import PokemonList from './pages/PokemonList';
 import MyPokemon from './pages/MyPokemon';
 import PokemonDetail from './pages/PokemonDetail';
 
+import { getLocalPokemons } from './stores/actions/pokemon';
+
 function App() {
+  const dispatch = useDispatch();
+  const { myPokemon } = useSelector(
+    (state) => state.pokemon,
+  );
+
+  useEffect(() => {
+    dispatch(getLocalPokemons());
+  }, []);
   return (
     <>
       <div>
@@ -20,7 +31,11 @@ function App() {
               <Link to="/">Pokemon List</Link>
             </li>
             <li>
-              <Link to="/my-pokemon">My Pokemon</Link>
+              <Link to="/my-pokemon">
+                {
+                `My Pokemon (${myPokemon.data.length})`
+              }
+              </Link>
             </li>
           </ul>
         </nav>

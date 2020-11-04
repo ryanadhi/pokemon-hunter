@@ -90,3 +90,9 @@ export function releasePokemon(payload) {
 
 // TODO
 // Release All
+
+export function getLocalPokemons() {
+  return {
+    type: types.GET_LOCAL_POKEMONS,
+  };
+}

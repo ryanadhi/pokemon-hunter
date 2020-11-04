@@ -11,13 +11,21 @@ export default function PokemonList() {
   const [limit, setLimit] = useState(20);
   const dispatch = useDispatch();
   const history = useHistory();
-  const { pokemons } = useSelector(
+  const { pokemons, myPokemon } = useSelector(
     (state) => state.pokemon,
   );
 
   useEffect(() => {
     dispatch(getPokemons(offset, limit));
   }, [offset, limit]);
+
+  const countPokemonOwned = (name) => {
+    const samePokemonOwned = myPokemon.data.filter((el) => el.name === name);
+    if (samePokemonOwned.length === 0) {
+      return '';
+    }
+    return `(${samePokemonOwned.length})`;
+  };
 
   const nextButton = () => {
     setOffset(offset + limit);
@@ -32,11 +40,12 @@ export default function PokemonList() {
   return (
     <>
       <div>
-        <h1>this is pokemonlist</h1>
         {pokemons.status === 'loading' && <p>loading...</p>}
-        {pokemons.status === 'loaded' && <p>{JSON.stringify(pokemons.data)}</p>}
         {pokemons.status === 'loaded' && pokemons.data.results.map((pokemon) => (
-          <p onClick={() => goToDetail(pokemon.name)}>{pokemon.name}</p>
+          <p onClick={() => goToDetail(pokemon.name)}>
+            {pokemon.name}
+            {countPokemonOwned(pokemon.name)}
+          </p>
         ))}
       </div>
       {pokemons.data.previous && <button onClick={prevButton} type="button">prev</button>}
