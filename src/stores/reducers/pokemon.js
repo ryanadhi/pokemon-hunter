@@ -4,14 +4,14 @@ export function pokemon(state = {}, action) {
   switch (action.type) {
     case types.GET_POKEMONS_START:
     case types.GET_POKEMONS_SUCCESS:
-    case types.GET_POKEMONS_FAILURE:
+    case types.GET_POKEMONS_FAILURE: {
       return {
         ...state,
         pokemons: {
           ...state.pokemons,
           ...action.payload,
         },
-      };
+      }; }
     case types.GET_POKEMON_START:
     case types.GET_POKEMON_SUCCESS:
     case types.GET_POKEMON_FAILURE:

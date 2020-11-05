@@ -17,11 +17,18 @@ export function getPokemons(offset, limit) {
       });
       fetchPokemons(offset, limit)
         .then((response) => {
+          const pokemons = response.data.results.map((item, index) => ({
+            id: index + offset + 1,
+            ...item,
+          }));
           dispatch({
             type: types.GET_POKEMONS_SUCCESS,
             payload: {
               status: 'loaded',
-              data: response.data,
+              data: {
+                ...response.data,
+                results: pokemons,
+              },
             },
           });
           return resolve(response.data);

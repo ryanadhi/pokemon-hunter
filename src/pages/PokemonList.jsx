@@ -49,9 +49,12 @@ export default function PokemonList() {
               ))
             }
             {pokemons.status === 'loaded' && pokemons.data.results.map((pokemon) => (
-              <div onClick={() => goToDetail(pokemon.name)} className="text-gray-700 text-center bg-gray-400 px-4 py-2 m-2 capitalize">
-                {`${pokemon.name} ${countPokemonOwned(pokemon.name)}`}
-              </div>
+              <>
+                <div onClick={() => goToDetail(pokemon.name)} className="flex flex-col items-center text-gray-700 text-center bg-gray-400 px-4 py-2 m-2 capitalize">
+                  <img className="h-10 w-10" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`} alt={pokemon.name} />
+                  <p>{`${pokemon.name} ${countPokemonOwned(pokemon.name)}`}</p>
+                </div>
+              </>
             ))}
           </div>
         </div>

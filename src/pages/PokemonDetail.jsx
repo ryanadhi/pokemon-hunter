@@ -1,14 +1,18 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/no-array-index-key */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getPokemonDetail, addPokemon } from '../stores/actions/pokemon';
+import { getPokemonDetail } from '../stores/actions/pokemon';
+import Modal from '../components/Modal';
 
 export default function PokemonDetail() {
   const dispatch = useDispatch();
   const { name } = useParams();
+  const [showModal, setShowModal] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const { pokemon } = useSelector(
     (state) => state.pokemon,
   );
@@ -24,13 +28,12 @@ export default function PokemonDetail() {
     // TODO
     // add loading??
     const random = Math.random();
-    console.log(random);
     if (random > 0.5) {
-      dispatch(addPokemon({
-        name: pokemon.data.name,
-      }));
+      setIsSuccess(true);
+      setShowModal(true);
     } else {
-      console.log('failed');
+      setIsSuccess(false);
+      setShowModal(true);
     }
   };
 
@@ -55,6 +58,17 @@ export default function PokemonDetail() {
       }
         </>
       )}
+      {
+        showModal
+        && (
+        <Modal
+          catchSuccess={isSuccess}
+          // show={showModal}
+          set={setShowModal}
+          pokemon={pokemon.data}
+        />
+        )
+      }
     </div>
   );
 }
