@@ -7,15 +7,17 @@ import { useDispatch } from 'react-redux';
 import { ReactComponent as CheckIcon } from '../assets/images/check.svg';
 import { ReactComponent as CloseIcon } from '../assets/images/close.svg';
 import { addPokemon } from '../stores/actions/pokemon';
+import { useInput } from '../helpers/inputHooks.helper';
 
 export default function Modal(props) {
-  const dispatch = useDispatch();
   const {
     pokemon,
     set,
     // show,
     catchSuccess,
   } = props;
+  const dispatch = useDispatch();
+  const { value, bind, reset } = useInput(pokemon.name);
 
   const closeModal = () => {
     set(false);
@@ -23,7 +25,8 @@ export default function Modal(props) {
 
   const catchPokemon = () => {
     dispatch(addPokemon({
-      name: pokemon.data.name,
+      name: pokemon.name,
+      nickname: value,
     }));
     set(false);
   };
@@ -66,7 +69,7 @@ export default function Modal(props) {
                         </label>
                       </div>
                       <div className="md:w-1/2">
-                        <input className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" value="Jane Doe" />
+                        <input className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" {...bind} />
                       </div>
                     </div>
                   </form>
@@ -80,7 +83,7 @@ export default function Modal(props) {
             <span className="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
               {catchSuccess
               && (
-              <button type="button" className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-green-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+              <button type="button" className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-green-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5" onClick={catchPokemon}>
                 Store
               </button>
               )}

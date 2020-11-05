@@ -18,16 +18,18 @@ export default function MyPokemon() {
   );
   useEffect(() => {
     dispatch(getLocalPokemons());
-  }, [myPokemon]);
+  }, []);
+
   return (
     <div>
       <h1>this is mypokemon</h1>
       {myPokemon.data.length > 0
         && myPokemon.data.map((pokemon) => (
-          <>
-            <p key={pokemon.id}>{pokemon.name}</p>
+          <div key={pokemon.id}>
+            <p>{pokemon.name}</p>
+            <p>{pokemon.nickname}</p>
             <button type="button" onClick={() => removePokemon(pokemon.id)}>release</button>
-          </>
+          </div>
         ))}
       <button type="button" disabled={myPokemon.data.length === 0} onClick={() => removeAllPokemons()}>release all</button>
     </div>
