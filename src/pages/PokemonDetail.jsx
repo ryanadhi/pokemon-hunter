@@ -47,7 +47,7 @@ export default function PokemonDetail() {
         <div className="flex flex-wrap">
           <div className="flex flex-col w-full sm:w-1/2 justify-center items-center">
             <img src={pokemon.data.sprites.other['official-artwork'].front_default} alt={pokemon.data.name} className="object-contain" />
-            <div style={{ textAlign: 'center', cursor: 'pointer' }} onClick={catchPokemon}>
+            <div style={{ textAlign: 'center', cursor: 'pointer' }} onClick={catchPokemon} className="flex flex-col justify-center items-center my-4">
               <StyledIcon />
               <p className="font-mono text-lg text-gray-800 text-center">Catch Pokemon!!</p>
             </div>
