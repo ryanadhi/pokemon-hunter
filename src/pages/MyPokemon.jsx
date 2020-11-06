@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
+import '../assets/tooltip.css';
 import { releasePokemon, releaseAllPokemon, getLocalPokemons } from '../stores/actions/pokemon';
 import { ReactComponent as ReleaseIcon } from '../assets/images/logout.svg';
 

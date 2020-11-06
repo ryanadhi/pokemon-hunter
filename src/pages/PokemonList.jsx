@@ -38,7 +38,7 @@ export default function PokemonList() {
     history.push(`/pokemon/${name}`);
   };
 
-  const buttonActive = 'bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4';
+  const buttonActive = ' bg-teal-500 hover: bg-teal-600 text-gray-100 font-bold py-2 px-4';
   const buttonInActive = 'bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 opacity-50 cursor-not-allowed';
 
   return (

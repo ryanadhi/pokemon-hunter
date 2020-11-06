@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 import { getPokemonDetail } from '../stores/actions/pokemon';
 import Modal from '../components/Modal';
 import Chart from '../components/Chart';
+import typeStyle from '../utils/types.utils';
 import { ReactComponent as PokeballIcon } from '../assets/images/pokeball-catch.svg';
 
 export default function PokemonDetail() {
@@ -63,7 +64,7 @@ export default function PokemonDetail() {
               <div className="flex justify-center flex-wrap">
                 {
               pokemon.data.types.map((type, index) => (
-                <p key={index} className="text-sm font-medium bg-green-100 py-1 px-2 rounded text-green-500 align-middle mx-2 my-4 capitalize">{type.type.name}</p>
+                <p key={index} className={`${typeStyle[type.type.name]} text-sm font-medium py-1 px-2 rounded align-middle mx-2 my-4 capitalize`}>{type.type.name}</p>
               ))
             }
               </div>
@@ -99,7 +100,6 @@ export default function PokemonDetail() {
         && (
         <Modal
           catchSuccess={isSuccess}
-          // show={showModal}
           set={setShowModal}
           pokemon={pokemon.data}
         />
