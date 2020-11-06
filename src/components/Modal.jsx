@@ -13,7 +13,6 @@ export default function Modal(props) {
   const {
     pokemon,
     set,
-    // show,
     catchSuccess,
   } = props;
   const dispatch = useDispatch();
@@ -27,6 +26,7 @@ export default function Modal(props) {
     dispatch(addPokemon({
       name: pokemon.name,
       nickname: value,
+      pokemon_id: pokemon.id,
     }));
     set(false);
   };
@@ -55,9 +55,6 @@ export default function Modal(props) {
 
                 </h3>
                 <div className="mt-2">
-                  {/* <p className="text-sm leading-5 text-gray-500">
-                    Set your Pokemon`s nickname
-                  </p> */}
                   {
                       catchSuccess
                   && (

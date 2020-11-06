@@ -38,15 +38,14 @@ export default function PokemonList() {
     history.push(`/pokemon/${name}`);
   };
 
-  const buttonActive = 'bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r';
-  const buttonInActive = 'bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l opacity-50 cursor-not-allowed';
+  const buttonActive = 'bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4';
+  const buttonInActive = 'bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 opacity-50 cursor-not-allowed';
 
   return (
-    <>
-      <div className="container mx-auto">
-        <div className="flex-1 justify-center">
-          <div className="p-24 flex flex-wrap items-center justify-center">
-            {
+    <div>
+      <div className="flex-1 justify-center">
+        <div className="p-10 flex flex-wrap items-center justify-center">
+          {
               pokemons.status === 'loading' && [...Array(limit)].map(() => (
                 <div className="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-xs shadow-lg">
                   <svg className="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style={{ transform: 'scale(1.5)', opacity: '0.1' }}>
@@ -66,7 +65,7 @@ export default function PokemonList() {
                 </div>
               ))
             }
-            {
+          {
               pokemons.status === 'loaded' && pokemons.data.results.map((pokemon) => (
                 <div
                   className="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-xs shadow-lg"
@@ -93,14 +92,13 @@ export default function PokemonList() {
                 </div>
               ))
             }
-          </div>
-        </div>
-        <div className="flex justify-between my-4">
-          <button disabled={!pokemons.data.previous} onClick={prevButton} type="button" className={pokemons.data.previous ? buttonActive : buttonInActive}>prev</button>
-          <button onClick={nextButton} disabled={!pokemons.data.next} type="button" className={pokemons.data.next ? buttonActive : buttonInActive}>next</button>
         </div>
       </div>
-    </>
+      <div className="bg-gray-100 flex justify-between inset-x-0 bottom-0 fixed">
+        <button disabled={!pokemons.data.previous} onClick={prevButton} type="button" className={pokemons.data.previous ? `${buttonActive} rounded-l-lg` : `${buttonInActive} rounded-l-lg`}>Prev</button>
+        <button onClick={nextButton} disabled={!pokemons.data.next} type="button" className={pokemons.data.next ? `${buttonActive} rounded-r-lg` : `${buttonInActive} rounded-r-lg`}>Next</button>
+      </div>
+    </div>
   );
 }
 

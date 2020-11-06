@@ -26,17 +26,19 @@ function App() {
   return (
     <>
       <NavBar pokemonOwned={myPokemon.data.length} />
-      <Switch>
-        <Route path="/pokemon/:name">
-          <PokemonDetail />
-        </Route>
-        <Route path="/my-pokemon">
-          <MyPokemon />
-        </Route>
-        <Route path="/">
-          <PokemonList />
-        </Route>
-      </Switch>
+      <div className="container mx-auto relative mt-16">
+        <Switch>
+          <Route path="/pokemon/:name">
+            <PokemonDetail />
+          </Route>
+          <Route path="/my-pokemon">
+            <MyPokemon />
+          </Route>
+          <Route path="/">
+            <PokemonList />
+          </Route>
+        </Switch>
+      </div>
     </>
   );
 }

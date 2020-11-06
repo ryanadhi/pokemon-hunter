@@ -10,7 +10,7 @@ import { ReactComponent as PokeballIcon } from '../assets/images/pokeball.svg';
 
 export default function NavBar({ pokemonOwned }) {
   return (
-    <nav className="bg-gray-800">
+    <nav className="bg-gray-800 w-full z-10 inset-x-0 top-0 fixed">
       <div className="container mx-auto">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
