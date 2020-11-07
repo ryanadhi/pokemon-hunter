@@ -1,14 +1,14 @@
-/* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable no-undef */
 import React from 'react';
+import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import thunk from 'redux-thunk';
-import App from './App';
+import PokemonList from '../PokemonList';
 
-describe('With React Testing Library', () => {
+describe('PokemonList', () => {
   const initialState = {
     pokemon: {
       pokemons: {
@@ -44,24 +44,27 @@ describe('With React Testing Library', () => {
   };
   const middlewares = [thunk];
   const mockStore = configureStore(middlewares);
-  let store;
-
-  describe('App', () => {
-    store = mockStore(initialState);
-    const wrapper = render(
+  const store = mockStore(initialState);
+  it('should render correctly in "debug" mode', () => {
+    const wrapper = shallow(
       <BrowserRouter>
         <Provider store={store}>
-          <App />
+          <PokemonList debug />
         </Provider>
       </BrowserRouter>,
     );
 
-    it('Shows Navbar', () => {
-      expect(wrapper.getByText('Pokemon List')).not.toBeNull();
-      expect(wrapper.getByText('My Pokemon (1)')).not.toBeNull();
-      expect(wrapper.getByText('pokeball.svg')).not.toBeNull();
-      expect(wrapper.getByText(/Prev/i).closest('button')).toBeDisabled();
-      expect(wrapper.getByText(/Next/i).closest('button')).toBeInTheDocument();
-    });
+    expect(wrapper).toMatchSnapshot();
+  });
+  it('should render data from my pokemon', () => {
+    const wrapper = render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <PokemonList debug />
+        </Provider>
+      </BrowserRouter>,
+    );
+
+    expect(wrapper.getByText('bulbasaur')).toBeInTheDocument();
   });
 });

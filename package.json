@@ -79,7 +79,7 @@
   "scripts": {
     "start": "npm run watch:css && node scripts/start.js",
     "build": "npm run watch:css && node scripts/build.js",
-    "test": "node scripts/test.js",
+    "test": "jest",
     "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
     "postbuild": "purgecss --css build/static/css/*.css --content build/index.html build/static/js/*.js --output build/static/css"
   },
@@ -104,6 +104,9 @@
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^3.0.0",
     "autoprefixer": "^9.8.6",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "enzyme-to-json": "^3.6.1",
     "eslint": "^7.12.1",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.22.1",
@@ -113,6 +116,7 @@
     "glob-all": "^3.2.1",
     "postcss-cli": "^8.2.0",
     "purgecss-webpack-plugin": "^3.0.0",
+    "redux-mock-store": "^1.5.4",
     "tailwindcss": "^1.9.6"
   },
   "jest": {
@@ -165,7 +169,10 @@
       "jest-watch-typeahead/filename",
       "jest-watch-typeahead/testname"
     ],
-    "resetMocks": true
+    "resetMocks": true,
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "babel": {
     "presets": [
