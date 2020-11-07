@@ -33,9 +33,12 @@ describe('With React Testing Library', () => {
         data: {},
       },
       myPokemon: {
-        // status: 'initial',
-        // error: null,
-        data: ['test'],
+        data: [{
+          id: 1,
+          pokemon_id: 1,
+          name: 'bulbasaur',
+          nickname: 'bulbasaur-1',
+        }],
       },
     },
   };

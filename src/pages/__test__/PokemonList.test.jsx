@@ -33,8 +33,6 @@ describe('PokemonList', () => {
         data: {},
       },
       myPokemon: {
-        // status: 'initial',
-        // error: null,
         data: [{
           id: 1,
           pokemon_id: 1,

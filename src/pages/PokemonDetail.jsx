@@ -18,6 +18,7 @@ export default function PokemonDetail() {
   const { name } = useParams();
   const [showModal, setShowModal] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [statData, setStatData] = useState([]);
   const { pokemon } = useSelector(
     (state) => state.pokemon,
   );
@@ -27,6 +28,9 @@ export default function PokemonDetail() {
 
   useEffect(() => {
     dispatch(getPokemonDetail(name));
+    if (pokemon.data.stats) {
+      setStatData(pokemon.data.stats.map((item) => item.base_stat));
+    }
   }, [name]);
 
   const catchPokemon = () => {
@@ -45,7 +49,7 @@ export default function PokemonDetail() {
   return (
     <div>
       {pokemon.status !== 'loaded' ? <p>loading...</p> : (
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap justify-center">
           <div className="flex flex-col w-full sm:w-1/2 justify-center items-center">
             <img src={pokemon.data.sprites.other['official-artwork'].front_default} alt={pokemon.data.name} className="object-contain" />
             <div style={{ textAlign: 'center', cursor: 'pointer' }} onClick={catchPokemon} className="flex flex-col justify-center items-center my-4">
@@ -69,29 +73,27 @@ export default function PokemonDetail() {
             }
               </div>
             </div>
-            <div className="flex justify-center flex-col">
+
+            <div>
               <p className="font-sans font-bold tracking-wider text-base md:text-xl text-blue-900 text-center capitalize">
-                Moves
+                Stats
               </p>
-              <div className="flex justify-center flex-wrap">
-                {
+              { pokemon.data.stats
+              && <Chart stats={pokemon.data.stats} />}
+            </div>
+
+          </div>
+          <div className="flex justify-center flex-col">
+            <p className="font-sans font-bold tracking-wider text-base md:text-xl text-blue-900 text-center capitalize">
+              Moves
+            </p>
+            <div className="flex justify-center flex-wrap">
+              {
               pokemon.data.moves.map((move, index) => (
                 <p key={index} className="text-sm font-medium bg-gray-400 py-1 px-2 rounded text-gray-600 align-middle mx-1 my-1">{move.move.name}</p>
               ))
             }
-              </div>
             </div>
-            {/* <div>
-              {pokemon.data.stats.map((item, index) => (
-                <p key={index} className="text-sm font-medium bg-green-100 py-1 px-2 rounded text-green-500 align-middle mx-2 my-4 capitalize">
-                  {item.stat.name}
-                  :
-                  {item.base_stat}
-                </p>
-              ))}
-              <Chart />
-            </div> */}
-
           </div>
         </div>
       )}
