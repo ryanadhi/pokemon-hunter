@@ -21,7 +21,7 @@
         "react/jsx-props-no-spreading": "off",
         "react/prop-types": "off", 
         "import/prefer-default-export": "off",
-        "linebreak-style": ["error", "linux"],
+        "linebreak-style": ["error", "unix"],
         "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
         "jsx-a11y/click-events-have-key-events": "off",
         "jsx-a11y/no-static-element-interactions": "off"
