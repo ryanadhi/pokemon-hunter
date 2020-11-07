@@ -58,7 +58,10 @@ export default function Modal(props) {
                   {
                       catchSuccess
                   && (
-                  <form className="w-full max-w-sm">
+                  <form
+                    className="w-full max-w-sm"
+                    onSubmit={catchPokemon}
+                  >
                     <div className="md:flex md:items-center mb-6">
                       <div className="md:w-1/2">
                         <label className="block text-gray-500 font-bold md:text-left mb-1 md:mb-0 pr-4" htmlFor="inline-full-name">
@@ -80,7 +83,11 @@ export default function Modal(props) {
             <span className="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
               {catchSuccess
               && (
-              <button type="button" className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-green-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5" onClick={catchPokemon}>
+              <button
+                type="submit"
+                className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-green-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                onClick={catchPokemon}
+              >
                 Store
               </button>
               )}
