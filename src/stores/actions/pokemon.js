@@ -6,6 +6,7 @@ import {
   fetchPokemonDetail,
 } from '../../helpers/api/pokemon.api';
 
+// GET all pokemons
 export function getPokemons(offset, limit) {
   return (dispatch) => {
     new Promise((resolve, reject) => {
@@ -47,6 +48,7 @@ export function getPokemons(offset, limit) {
   };
 }
 
+// GET pokemon detail
 export function getPokemonDetail(name) {
   return (dispatch) => {
     new Promise((resolve, reject) => {
@@ -81,6 +83,7 @@ export function getPokemonDetail(name) {
   };
 }
 
+// Add pokemon to 'My Pokemon'
 export function addPokemon(payload) {
   return {
     type: types.ADD_POKEMON,
@@ -88,6 +91,7 @@ export function addPokemon(payload) {
   };
 }
 
+// Release pokemon from 'My Pokemon'
 export function releasePokemon(payload) {
   return {
     type: types.RELEASE_POKEMON,
@@ -95,6 +99,7 @@ export function releasePokemon(payload) {
   };
 }
 
+// Release all pokemon from 'My Pokemon'
 export function releaseAllPokemon(payload) {
   return {
     type: types.RELEASE_ALL_POKEMON,
@@ -102,6 +107,7 @@ export function releaseAllPokemon(payload) {
   };
 }
 
+// GET all of 'My Pokemon' from local storage
 export function getLocalPokemons() {
   return {
     type: types.GET_LOCAL_POKEMONS,
