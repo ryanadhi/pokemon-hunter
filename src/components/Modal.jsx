@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable max-len */
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
@@ -16,12 +14,13 @@ export default function Modal(props) {
     catchSuccess,
   } = props;
   const dispatch = useDispatch();
-  const { value, bind, reset } = useInput(pokemon.name);
+  const { value, bind } = useInput(pokemon.name);
 
   const closeModal = () => {
     set(false);
   };
 
+  // Function to catch Pokemon
   const catchPokemon = () => {
     dispatch(addPokemon({
       name: pokemon.name,

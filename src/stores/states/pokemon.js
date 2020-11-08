@@ -10,8 +10,6 @@ const pokemon = {
     data: {},
   },
   myPokemon: {
-    // status: 'initial',
-    // error: null,
     data: [],
   },
 };

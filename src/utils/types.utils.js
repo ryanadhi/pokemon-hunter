@@ -1,3 +1,4 @@
+// Styling for pokemon type tags
 const typeStyle = {
   normal: 'bg-teal-100 text-teal-500',
   fighting: 'bg-yellow-500 text-yellow-100',

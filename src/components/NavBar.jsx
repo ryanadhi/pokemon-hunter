@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable max-len */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import styled from 'styled-components';
@@ -19,8 +17,18 @@ export default function NavBar({ pokemonOwned }) {
                 <Icon />
               </div>
               <div className="ml-10 flex items-baseline space-x-4">
-                <Link to="/" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Pokemon List</Link>
-                <Link to="/my-pokemon" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">{`My Pokemon (${pokemonOwned})`}</Link>
+                <Link
+                  to="/"
+                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+                >
+                  Pokemon List
+                </Link>
+                <Link
+                  to="/my-pokemon"
+                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+                >
+                  {`My Pokemon (${pokemonOwned})`}
+                </Link>
               </div>
             </div>
           </div>
